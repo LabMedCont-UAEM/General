@@ -48,11 +48,14 @@ FX=0.0 ; FY=0.0
 do i=1,NTDOM
 
 do n=1,NTDOM
+!Van Der Waals interaction
 !dist=sqrt( (x1(i)-x1(n))**2 + (y1(i)-y1(n))**2) 
 !IF((dist.le.raction).and.(i.ne.n)) THEN
 !FX(i)=FX(i)+PSI*( ((raction/dist)**(4))- ((raction/dist)**(2)))*(x1(i)-x1(n))/(dist*dist)
 !FY(i)=FY(i)+PSI*( ((raction/dist)**(4))- ((raction/dist)**(2)))*(Y1(i)-Y1(n))/(dist*dist)
 !END IF
+
+!Normal contact force, spring-dashpot element
 IF(i.ne.n) then
 delta=2.0*raction-(x1(i)-x1(n))*(x1(i)-x1(n))/sqrt((x1(i)-x1(n))**2 + (y1(i)-y1(n))**2)&
 			    -(y1(i)-y1(n))*(y1(i)-y1(n))/sqrt((x1(i)-x1(n))**2 + (y1(i)-y1(n))**2)
